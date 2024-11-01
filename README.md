@@ -6,6 +6,6 @@
 
 
 
-СиАОД - https://github.com/AnSafov07/KFU/tree/main/SiOD
+СиАОД - https://github.com/AnSafov07/KFU/tree/main/SiAOD
 
 Контесты - ???
