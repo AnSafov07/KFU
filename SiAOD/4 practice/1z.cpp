@@ -1,30 +1,27 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
 
-double sumfunc(double x, double E) {
-    double sum = 0.0;
-    double term = 1.0;
-    int k = 0;
+int main()
+{
+    double x, e;
+    cin >> x >> e;
 
-    while (fabs(term) > E) {
-        sum += term;
-        term *= (pow(x, 2) / (pow(2, k) * (k + 1))); 
-        k++;
+    double chisl = 1.0; 
+    double q = 1.0;  
+    double result = 1.0; 
+    double factorial = 1.0; 
+
+    for(int k = 1;; k++) {
+        chisl *= x * x;
+        q *= 2;
+        factorial *= k;
+
+        double term = chisl / (q * factorial);
+
+        if (abs(term) <= e) break;
+        result += term;
     }
 
-    cout << "Приближенное значение бесконечной суммы: " << sum << endl;
-    return sum;
-}
-
-int main() {
-    double E, x;
-    cout << "Введите значение x: "; cin >> x;
-    cout << "Введите значение E: "; cin >> E;
-
-    if (E <= 0 || x == 0) {
-        cout << "Ошибка ввода данных!" << endl;
-        return 0;
-    }
-    else { sumfunc(x, E); }
+    cout << result;
+    return 0;
 }
