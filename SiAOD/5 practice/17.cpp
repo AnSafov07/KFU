@@ -1,27 +1,16 @@
 #include <iostream>
-using namespace std;
+#include <vector>
 
-void insertionSort(int arr[], int n, bool up) {
+void insertionSort(std::vector<int>& arr) {
+    int n = arr.size();
     for (int i = 1; i < n; i++) {
-        int key = arr[i];
+        int key = arr[i]; // Текущий элемент
         int j = i - 1;
 
-        while (j >= 0) {
-            if (up) {
-                if (arr[j] > key) {
-                    arr[j + 1] = arr[j];
-                    j--;
-                } else {
-                    break;
-                }
-            } else {
-                if (arr[j] < key) {
-                    arr[j + 1] = arr[j];
-                    j--;
-                } else {
-                    break;
-                }
-            }
+        // Сдвиг вправо текущего элемента
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
         }
         arr[j + 1] = key;
     }
@@ -29,35 +18,22 @@ void insertionSort(int arr[], int n, bool up) {
 
 int main() {
     int n;
-    cout << "Введите количество элементов: ";
-    cin >> n;
+    std::cout << "Введите количество элементов в массиве: ";
+    std::cin >> n;
 
-    int arr[n];
-    cout << "Введите элементы массива: ";
+    std::vector<int> arr(n);
+    std::cout << "Введите элементы массива:\n";
     for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+        std::cin >> arr[i];
     }
 
-    int arrAsc[n], arrDesc[n];
-    for (int i = 0; i < n; i++) {
-        arrAsc[i] = arr[i];
-        arrDesc[i] = arr[i];
-    }
+    insertionSort(arr);
 
-    insertionSort(arrAsc, n, true);
-    insertionSort(arrDesc, n, false);
-
-    cout << "Массив по неубыванию: ";
+    std::cout << "Отсортированный массив по неубыванию:\n";
     for (int i = 0; i < n; i++) {
-        cout << arrAsc[i] << " ";
+        std::cout << arr[i] << " ";
     }
-    cout << endl;
-
-    cout << "Массив по невозрастанию: ";
-    for (int i = 0; i < n; i++) {
-        cout << arrDesc[i] << " ";
-    }
-    cout << endl;
+    std::cout << std::endl;
 
     return 0;
 }
